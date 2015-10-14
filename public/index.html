@@ -25,6 +25,7 @@
     var input = document.getElementById("input");
     var messages = document.getElementById("messages");
 
+    // submit all messages on enter and clear the input field
     document.getElementById("form").addEventListener("submit", function(e) {
         e.preventDefault();
         e.stopPropagation();
@@ -36,6 +37,7 @@
         input.focus();
     });
 
+    // append all received messages to #messages
     ws.addEventListener("message", function(e) {
         var message = document.createElement("li");
         message.textContent = e.data;
