@@ -1,0 +1,26 @@
+{
+    "name": "kelunik/demo-chat",
+    "description": "Simple chat demonstrating WebSocket usage with Aerys.",
+    "require": {
+        "amphp/aerys": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "Kelunik\\Demo\\": "src/"
+        }
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Niklas Keller",
+            "email": "me@kelunik.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "repositories": [
+        {
+            "type": "git",
+            "url": "git@github.com:rdlowrey/aerys"
+        }
+    ]
+}

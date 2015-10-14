@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Aerys Chat</title>
+    <style>
+        * { padding: 0; margin: 0; box-sizing: border-box; }
+        body { font-size: 14px; font-family: sans-serif; display: flex; height: 100vh; flex-direction: column; }
+        form { display: flex; width: 100%; height: 50px; border-top: 2px solid #ccc; }
+        input { flex: 1 1 auto; padding: 5px 15px; border: 0; font-size: 16px; }
+        button { flex: 0 0 auto; width: 80px; background: #eee; color: #333; border: 0; }
+        #messages { flex: 1 1 auto; list-style: none; }
+        #messages > li { margin: 0 20px; padding: 20px; border-bottom: 1px solid #ccc; }
+        #messages > li:last-child { border-bottom: 0; }
+        input:focus, button:focus { outline: 0; }
+    </style>
+</head>
+<body>
+<ol id="messages"></ol>
+<form action="" id="form">
+    <input id="input" autocomplete="off" autofocus><button>send</button>
+</form>
+<script>
+    var ws = new WebSocket("ws://localhost:1337/ws");
+    var input = document.getElementById("input");
+    var messages = document.getElementById("messages");
+
+    document.getElementById("form").addEventListener("submit", function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        var text = input.value;
+        ws.send(text);
+
+        input.value = "";
+        input.focus();
+    });
+
+    ws.addEventListener("message", function(e) {
+        var message = document.createElement("li");
+        message.textContent = e.data;
+        messages.appendChild(message);
+    })
+</script>
+</body>
+</html>
