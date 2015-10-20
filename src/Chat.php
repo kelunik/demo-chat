@@ -59,13 +59,13 @@ class Chat implements Websocket {
             $clients = array_keys($this->ips[$receiver] ?? []);
 
             if (!empty($clients)) {
-                $this->endpoint->broadcast($payload, $clients);
+                $this->endpoint->send($clients, $payload);
             }
 
             $this->endpoint->send($clientId, $payload);
         } else {
             $payload = $ip . ": " . $body;
-            $this->endpoint->broadcast($payload);
+            $this->endpoint->send(null, $payload);
         }
     }
 
