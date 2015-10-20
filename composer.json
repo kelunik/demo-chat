@@ -20,7 +20,10 @@
     "repositories": [
         {
             "type": "git",
-            "url": "git@github.com:rdlowrey/aerys"
+            "url": "git@github.com:amphp/aerys.git"
         }
-    ]
+    ],
+    "config": {
+      "bin-dir": "bin"
+    }
 }
