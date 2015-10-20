@@ -16,11 +16,5 @@
             "email": "me@kelunik.com"
         }
     ],
-    "minimum-stability": "dev",
-    "repositories": [
-        {
-            "type": "git",
-            "url": "git@github.com:rdlowrey/aerys"
-        }
-    ]
+    "minimum-stability": "dev"
 }
