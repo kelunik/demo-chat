@@ -22,3 +22,6 @@ $root = root(__DIR__ . "/public");
     ->expose("*", 1337)
     ->use($router)
     ->use($root);
+
+// $logger is the default Aerys logger which we can just use here to print a note
+$logger->info("Open your browser and point it to http://localhost:1337/");

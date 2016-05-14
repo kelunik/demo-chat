@@ -27,7 +27,7 @@ class Chat implements Websocket {
 
         if ($origin !== "http://localhost:1337") {
             $response->setStatus(403);
-            $response->send("<h1>origin not allowed</h1>");
+            $response->end("<h1>origin not allowed</h1>");
 
             return null;
         }
