@@ -22,7 +22,7 @@ class Chat implements Websocket {
 
     public function onHandshake(Request $request, Response $response) {
         // During handshakes, you should always check the origin header, otherwise any site will
-        // be able to connect to your endpoint. Websockets are not restricted by the same-origin-policy!
+        // be able to connect to your endpoint. WebSockets are not restricted by the same-origin-policy!
         $origin = $request->getHeader("origin");
 
         if ($origin !== "http://localhost:1337") {
@@ -55,17 +55,17 @@ class Chat implements Websocket {
         if (preg_match("~@(\\d+\\.\\d+\\.\\d+\\.\\d+)\\b~", $body, $match)) {
             list($all, $receiver) = $match;
 
-            $payload = $ip . " (private): " . substr($body, strlen($all));
+            $payload = $ip . " (private): " . substr($body, \strlen($all));
             $clients = array_keys($this->ips[$receiver] ?? []);
 
             if (!empty($clients)) {
-                $this->endpoint->send($clients, $payload);
+                $this->endpoint->multicast($payload, $clients);
             }
 
-            $this->endpoint->send($clientId, $payload);
+            $this->endpoint->send($payload, $clientId);
         } else {
             $payload = $ip . ": " . $body;
-            $this->endpoint->send(null, $payload);
+            $this->endpoint->broadcast($payload);
         }
     }
 
@@ -73,8 +73,7 @@ class Chat implements Websocket {
         // Always clean up data when clients disconnect, otherwise we'll leak memory.
         $ip = $this->connections[$clientId];
 
-        unset($this->connections[$clientId]);
-        unset($this->ips[$ip][$clientId]);
+        unset($this->connections[$clientId], $this->ips[$ip][$clientId]);
 
         if (empty($this->ips[$ip])) {
             unset($this->ips[$ip]);

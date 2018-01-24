@@ -1,19 +1,19 @@
 {
     "name": "kelunik/demo-chat",
     "description": "Simple chat demonstrating WebSocket usage with Aerys.",
-    "require": {
-        "amphp/aerys": "^0.4"
-    },
-    "autoload": {
-        "psr-4": {
-            "Kelunik\\Demo\\": "src/"
-        }
-    },
     "license": "MIT",
     "authors": [
         {
             "name": "Niklas Keller",
             "email": "me@kelunik.com"
         }
-    ]
+    ],
+    "autoload": {
+        "psr-4": {
+            "Kelunik\\Demo\\": "src"
+        }
+    },
+    "require": {
+        "amphp/aerys": "^0.7.4"
+    }
 }

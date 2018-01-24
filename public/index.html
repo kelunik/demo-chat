@@ -21,6 +21,8 @@
     <input id="input" autocomplete="off" autofocus><button>send</button>
 </form>
 <script>
+    console.log("I'm fine");
+
     var ws = new WebSocket("ws://localhost:1337/ws");
     var input = document.getElementById("input");
     var messages = document.getElementById("messages");
@@ -42,7 +44,7 @@
         var message = document.createElement("li");
         message.textContent = e.data;
         messages.appendChild(message);
-    })
+    });
 </script>
 </body>
 </html>
